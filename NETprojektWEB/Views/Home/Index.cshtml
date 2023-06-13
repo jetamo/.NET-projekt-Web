@@ -1,0 +1,26 @@
+﻿@model LoginForm
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@{
+    string psw = ViewBag.psw.ToString();
+    string login = ViewBag.login.ToString();
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email)
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div>
+        @Html.Label(psw)
+        @Html.PasswordFor(x => x.Password)
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <button type ="submit">@login</button>
+}

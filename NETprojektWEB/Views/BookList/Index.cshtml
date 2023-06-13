@@ -1,0 +1,49 @@
+﻿@model BookListItemForm
+
+@{ 
+    ViewData["Title"] = "Login";
+}
+
+<table border="1">
+    <tr>
+        <td>Title</td>
+        <td>Author</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    @foreach (BookListItemForm b in ViewBag.Items)
+    {
+        <tr>
+            <td>@b.Title</td>
+            <td>@b.Author</td>
+            <td>
+                <form action="@Url.Action("Edit")" method="post">
+                    <input type="hidden" name ="Text" value="@b.Title" />
+                    <button type="submit">Edit</button>
+                </form>
+            </td> 
+            <td>
+                <form action="@Url.Action("Delete")" method="post">
+                    <input type="hidden" name="Text" value="@b.Title" />
+                    <button type ="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title)
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Author)
+        @Html.TextBoxFor(x => x.Author)
+        @Html.ValidationMessageFor(x => x.Author)
+    </div>
+
+    <button type ="submit">Add</button>
+}

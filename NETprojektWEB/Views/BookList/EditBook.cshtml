@@ -1,0 +1,28 @@
+﻿@model BookListItemForm
+@using NETprojektWEB.Models; 
+
+@{ 
+    ViewData["Title"] = "Login";
+}
+@{
+    BookListItemForm b = ViewBag.Items[Convert.ToInt32(TempData["IndexToEdit"])] as BookListItemForm;
+
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title)
+        @Html.ValidationMessageFor(x => x.Title)
+        @Html.Value(b.Title)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Author)
+        @Html.TextBoxFor(x => x.Author)
+        @Html.ValidationMessageFor(x => x.Author)
+        @Html.Value(b.Author)
+    </div>
+
+    <button type ="submit">Edit</button>
+}
